@@ -1,26 +1,28 @@
-import React, { Component } from 'react'
+import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-export class NewsItem extends Component {
-  render() {
-    let{source,title,description,imageUrl,newsUrl,author,publishedAt} = this.props
-    return (
-      <div>
-        <div className="card my-3">
-        <span className="position-absolute top-0 translate-middle badge rounded-pill bg-danger" style={{zIndex:'1',left:'90%'}}>{source}</span>
-            <img src ={!imageUrl?"https://static.files.bbci.co.uk/ws/simorgh-assets/public/sport/images/metadata/poster-1024x576.png":imageUrl} alt="..."/>
-            <div className="card-body">
-                <h5 className="card-title">{title}...</h5>
-                <p className="card-text">{description}...</p>
-                <p className="card-text mb-0"><small className="text-muted">By : {!author?"Unknown" :author}</small></p>
-                <p className="card-text"><small className="text-muted">Published On:{new Date(publishedAt).toGMTString()}</small></p>
-
-                <a href={newsUrl} target = "_blank" className="btn btn-primary">Read More</a>
-
-            </div>
-        </div>     
+const NewsItem = ({ title, description, imageUrl, newsUrl }) => {
+  return (
+    <div className="card shadow-lg h-100 rounded-4 overflow-hidden border-0" style={{ backgroundColor: "#f8f9fa" }}>
+      <img 
+        src={imageUrl || "https://via.placeholder.com/400"} 
+        className="card-img-top rounded-top-4"
+        alt="News"
+        style={{ 
+          height: "200px",   // Fixed height for uniform images
+          width: "100%",     // Ensures it spans full width
+          objectFit: "cover" // Crops instead of stretching
+        }} 
+      />
+      <div className="card-body d-flex flex-column">
+        <h5 className="card-title fw-bold text-dark">{title}</h5>
+        <p className="card-text text-muted flex-grow-1">{description}</p>
+        <a href={newsUrl} target="_blank" rel="noopener noreferrer" className="btn btn-dark btn-sm w-100 mt-auto">
+          Read More
+        </a>
+      </div>
     </div>
-    )
-  }
-}
+  );
+};
 
-export default NewsItem
+export default NewsItem;

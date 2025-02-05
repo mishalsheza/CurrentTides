@@ -1,0 +1,23 @@
+.animated-link {
+    position: relative;
+    text-decoration: none;
+    color: white;
+    padding-bottom: 5px;
+  }
+  
+  .animated-link::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    transition: all 0.3s ease-in-out;
+    transform: translateX(-50%);
+  }
+  
+  .animated-link:hover::after {
+    width: 100%;
+  }
+  
